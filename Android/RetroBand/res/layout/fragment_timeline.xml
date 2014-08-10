@@ -1,0 +1,148 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_timeline"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/AppTheme.FragmentContainer"
+    tools:context=".MainActivity$TimelineFragment" >
+
+    <!-- Contents container -->
+    <LinearLayout 
+        android:id="@+id/layout_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        
+        <!-- Realtime calorie, walks -->
+	    <LinearLayout 
+	        android:id="@+id/layout_status_hori"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:orientation="horizontal"
+	        >
+	        <!-- Calorie -->
+	    	<LinearLayout 
+	        	android:id="@+id/layout_calorie"
+	        	android:layout_width="0dip"
+	        	android:layout_height="wrap_content"
+	        	android:layout_weight="1"
+	        	android:orientation="vertical"
+	        	>
+		        <TextView
+		            android:id="@+id/text_title_calorie"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:padding="5dip"
+		            android:text="@string/title_calorie"
+		            android:textColor="#bbbbbb"
+		            android:textStyle="bold"
+		            android:textSize="12sp"
+		            android:gravity="center"
+		            />
+		        <TextView
+		            android:id="@+id/text_content_calorie"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:padding="5dip"
+		            android:textColor="#777777"
+		            android:textSize="36sp"
+		            android:gravity="center"
+		            />
+	        </LinearLayout>
+	        
+	    	<!-- Walks -->
+	    	<LinearLayout 
+	        	android:id="@+id/layout_walks"
+	        	android:layout_width="0dip"
+	        	android:layout_height="wrap_content"
+	        	android:layout_weight="1"
+	        	android:orientation="vertical"
+	        	>
+		        <TextView
+		            android:id="@+id/text_title_walks"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:padding="5dip"
+		            android:text="@string/title_walks"
+		            android:textColor="#bbbbbb"
+		            android:textStyle="bold"
+		            android:textSize="12sp"
+		            android:gravity="center"
+		            />
+		        <TextView
+		            android:id="@+id/text_content_walks"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:padding="5dip"
+		            android:textColor="#777777"
+		            android:textSize="36sp"
+		            android:gravity="center"
+		            />
+	        </LinearLayout>
+	        
+        </LinearLayout>
+        
+	    
+	    <!-- Seperator -->
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="12dip"
+            android:background="@color/grayd"
+            />
+	    
+	    
+	    <!-- stastics -->
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/text_title_statistics"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:textColor="#777777"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:layout_weight="1"
+                android:text="@string/title_statistics"
+                />
+	        <Button
+	            android:id="@+id/button_time_interval"
+	            android:layout_width="wrap_content"
+	            android:layout_height="25dip"
+	            android:padding="5dip"
+	            android:text="@string/title_month"
+	            style="@style/AppTheme.FormButton"
+	            />
+        </LinearLayout>
+        
+        <view class="com.hardcopy.retroband.RenderingStatistics"
+            android:id="@+id/render_statistics"
+            android:layout_width="match_parent"
+            android:layout_height="250dip"
+            android:background="#ffffff" >
+        </view>
+        
+        
+        <!-- Seperator -->
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/grayd"
+            />
+	    
+        
+	    <!-- Content List
+	    <ListView
+	        android:id="@+id/list_timeline"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        style="@style/AppTheme.List" />
+         -->
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,109 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/AppTheme.FragmentContainer"
+    tools:context=".MainActivity$LLSettingsFragment" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="top">
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="top"
+        android:layout_marginTop="5dip">
+        
+        <!-- Run in background -->
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="top">
+            <TextView
+                android:id="@+id/text_background_service"
+                android:layout_width="0dip"
+                android:layout_weight="6"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_background_service"
+                style="@style/AppTheme.FormText" />
+            <CheckBox 
+                android:id="@+id/check_background_service"
+                android:layout_width="0dip" 
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                style="@style/AppTheme.FormEditText" />
+        </LinearLayout>
+        
+        <!-- Weight -->
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="top">
+            <TextView
+                android:id="@+id/text_weight"
+                android:layout_width="0dip"
+                android:layout_weight="6"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_weight"
+                style="@style/AppTheme.FormText" />
+            <EditText 
+                android:id="@+id/edit_weight"
+                android:layout_width="0dip" 
+                android:layout_height="wrap_content"
+                android:hint="@string/settings_weight_hint"
+                android:layout_weight="4"
+                android:inputType="number"
+                style="@style/AppTheme.FormEditText" />
+        </LinearLayout>
+        
+        <!-- Logo -->
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:paddingTop="60dip"
+            android:paddingBottom="60dip"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical" >
+    
+            <ImageView 
+                android:id="@+id/logo"
+                android:layout_width="100dip"
+                android:layout_height="100dip"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_launcher"
+                />
+            
+            <TextView 
+                android:id="@+id/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dip"
+                android:text="@string/app_name"
+                android:textColor="@color/blue7"
+                style="@style/AppTheme.IntroTextBig" />
+            <!-- Disabled
+            <TextView 
+                android:id="@+id/copyright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dip"
+                android:text="@string/copyrights"
+                android:textColor="@color/blue5"
+                style="@style/AppTheme.IntroTextSmall" />
+             -->
+             
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    </ScrollView>
+
+</FrameLayout>

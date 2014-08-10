@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Retro Band</string>
+    <string name="service_name">RetroBand service</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    
+    
+    <!-- Statistics -->
+    <string name="title_statistics">Activity report</string>
+    <string name="title_month">Month</string>
+    <string name="title_day">Day</string>
+    <string name="title_hour">Hour</string>
+    
+    <!-- Settings -->
+    <string name="action_settings">App Settings</string>
+    <string name="settings_background_service">Run in background</string>
+    <string name="settings_weight">Weight(kg)</string>
+    <string name="settings_weight_hint">Type your weight</string>
+    
+    <!-- UI, Activity, Fragment -->
+    <string name="title_timeline">Timeline</string>
+    <string name="title_graph">Graph</string>
+    <string name="title_ll_settings">Settings</string>
+    
+    <string name="title_render1">Accelerometer value</string>
+    <string name="desc_render1">X:Red, Y:Green, Z:Blue</string>
+    
+    <string name="title_calorie">Calorie(Cal)</string>
+    <string name="title_walks">Walks</string>
+    
+    <string name="title_time_interval">Time interval</string>
+    
+    <!--  Bluetooth -->
+    <string name="bt_title">Bluetooth</string>
+    
+    <string name="bt_state_init">initializing</string>
+    <string name="bt_state_wait">waiting.. (select a device manually)</string>
+    <string name="bt_state_connect">connecting</string>
+    <string name="bt_state_connected">connected</string>
+    <string name="bt_state_error">error</string>
+    
+    <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Set the bluetooth enable at phone settings.</string>
+    <string name="bt_cmd_sending_error">Transaction failed</string>
+
+    <!--  DeviceListActivity -->
+    <string name="scanning">Scanning for devices...</string>
+    <string name="select_device">Select a device to connect</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
+
+    <!-- Options Menu -->
+    <string name="connect">Connect\na device</string>
+    <string name="discoverable">Make\ndiscoverable</string>
+    
+
+</resources>

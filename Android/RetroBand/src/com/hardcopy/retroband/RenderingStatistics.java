@@ -203,11 +203,11 @@ public class RenderingStatistics extends View {
 		mPaint.setColor(0xFF333333);	// Dark gray
 		mPaint.setTextSize(18);
 		for(int i=startNum; i<=maxH; i+=increaseNum) {
-			float y_pos = mViewH - MARGIN_BOTTOM - i*scaleH + MARGIN_TOP;
+			float y_pos = mViewH - MARGIN_BOTTOM - i*scaleH;
 			// Draw guide line
 			mCanvas.drawLine(MARGIN_LEFT, y_pos, mViewW, y_pos, mPaint);
 			// Draw unit size string
-			mCanvas.drawText(Integer.toString(i/increaseNum)+"k", 1, y_pos, mPaint);
+			mCanvas.drawText(Integer.toString(i/1000)+"k", 1, y_pos, mPaint);
 		}
 		
 		// Draw each value
@@ -217,7 +217,7 @@ public class RenderingStatistics extends View {
 			mPaint.setColor(0xFF0000CC);	// Blue
 			if(dataArray[i] > 0) {
 				mCanvas.drawRect(startPointX + 2,		// Left 
-						mViewH - MARGIN_BOTTOM - dataArray[i]*scaleH + MARGIN_TOP, 			// Top
+						mViewH - MARGIN_BOTTOM - dataArray[i]*scaleH,	// Top
 						startPointX + columnSize - 2, 	// Right
 						mViewH - MARGIN_BOTTOM, 	// Bottom
 						mPaint);
@@ -225,11 +225,11 @@ public class RenderingStatistics extends View {
 			
 			// Draw column string
 			mPaint.setColor(0xFF333333);	// Dark gray
-			mPaint.setTextSize(18);
+			mPaint.setTextSize(24);
 			int guideNum = i;
 			if(type != ContentManager.REPORT_TYPE_HOUR)
 				guideNum += 1;
-			mCanvas.drawText(Integer.toString(guideNum), startPointX + 6, mViewH - 8, mPaint);
+			mCanvas.drawText(Integer.toString(guideNum), startPointX + columnSize/5, mViewH - 8, mPaint);
 			
 			// Increase draw point X
 			startPointX += columnSize;

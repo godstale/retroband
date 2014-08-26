@@ -19,7 +19,11 @@ package com.hardcopy.retroband.contents;
 import java.util.Arrays;
 import java.util.Calendar;
 
-
+/**
+ * ContentObject holds accelerometer data at specified time.
+ * @author Administrator
+ *
+ */
 public class ContentObject {
 	
 	public static final int CONTENT_TYPE_ACCEL = 1;
@@ -50,6 +54,7 @@ public class ContentObject {
 		mAccelIndex = 0;
 		mCacheIndex = 0;
 		
+		// Convert date info in milli-time
 		Calendar cal = Calendar.getInstance();
 		setTime(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 
 				cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
@@ -58,9 +63,10 @@ public class ContentObject {
 	}
 	
 	
-	/**
-	 * PUBLIC methods
-	 */
+	/*****************************************************
+	 *	Public methods
+	 ******************************************************/
+	
 	public void reset() {
 		Arrays.fill(mAccelData, 0x00000000);
 		mAccelIndex = 0;

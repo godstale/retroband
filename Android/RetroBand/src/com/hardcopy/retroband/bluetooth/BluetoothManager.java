@@ -234,11 +234,13 @@ public class BluetoothManager {
         setState(STATE_LISTEN);
 
         // Send a failure message back to the Activity
+        /*
         Message msg = mHandler.obtainMessage(MESSAGE_TOAST);
         Bundle bundle = new Bundle();
         bundle.putString(SERVICE_HANDLER_MSG_KEY_TOAST, "Unable to connect device");
         msg.setData(bundle);
         mHandler.sendMessage(msg);
+        */
         
         // Reserve re-connect timer
         reserveRetryConnect();
@@ -265,6 +267,9 @@ public class BluetoothManager {
         reserveRetryConnect();
     }
     
+    /**
+     * Automatically retry bluetooth connection.
+     */
     private void reserveRetryConnect() {
     	if(mIsServiceStopped)
     		return;
@@ -293,7 +298,7 @@ public class BluetoothManager {
 				e.printStackTrace();
 			}
 			mConnectTimer = null;
-			mReconnectDelay = 0;
+			mReconnectDelay = 15*1000;
     	}
     }
 

@@ -75,7 +75,10 @@ public class ContentManager {
 	private int mThisMinute = -1;	// (in the range [0,59])
 	private int[] mMinuteArray = new int[60]; 
 	
-		
+
+	/**
+	 * Constructor
+	 */
 	private ContentManager(Context c, IContentManagerListener l) {
 		mContext = c;
 		mContentManagerListener = l;
@@ -92,6 +95,9 @@ public class ContentManager {
 		getCurrentReportsFromDB();
 	}
 	
+	/**
+	 * Singleton pattern
+	 */
 	public synchronized static ContentManager getInstance(Context c, IContentManagerListener l) {
 		if(mContentManager == null)
 			mContentManager = new ContentManager(c, l);
@@ -111,9 +117,7 @@ public class ContentManager {
 
 	
 	/*****************************************************
-	 * 
 	 *	Private methods
-	 *
 	 ******************************************************/
 	private void initializeBuffer() {
 		Arrays.fill(mMonthArray, 0x00000000);
@@ -131,8 +135,6 @@ public class ContentManager {
 		mThisDay = cal.get(Calendar.DAY_OF_MONTH) - 1;	// convert to 0~30
 		mThisHour = cal.get(Calendar.HOUR_OF_DAY);		// 0~23
 		mThisMinute = cal.get(Calendar.MINUTE);			// 0~59
-		
-		// TODO: Load activity data from DB
 	}
 	
 	/**
@@ -162,7 +164,7 @@ public class ContentManager {
 	}
 	
 	/**
-	 * Load sum of calorie data from DB
+	 * Load sum of calorie from DB
 	 */
 	private int[] getReportsFromDB(int type, int year, int month, int day, int hour) {
 		int[] timeArray = null;
@@ -371,6 +373,8 @@ public class ContentManager {
 		if(calorie < 1)
 			return;
 		
+		// Make data array to save
+		// We use only one information, calorie.
 		int[] dataArray = new int[5];
 		Arrays.fill(dataArray, 0x00000000);
 		dataArray[0] = calorie;
@@ -378,11 +382,11 @@ public class ContentManager {
 		mDB.insertActivityReport(type, time, year, month, day, hour, dataArray, null);
 	}
 	
+	
 	/*****************************************************
-	 * 
 	 *	Public methods
-	 *
 	 ******************************************************/
+	
 	public void setListener(IContentManagerListener l) {
 		mContentManagerListener = l;
 	}
@@ -417,7 +421,7 @@ public class ContentManager {
 	
 	
 	/**
-	 * After parsing packets from remote, Service calls this method with result object.
+	 * After parsing packets from remote, service calls this method with result object.
 	 * This method analyze accel raw data and calculate walks, calories.
 	 * And makes an activity report instance which has analyzed results.
 	 * @param co		content object which has accel raw data array

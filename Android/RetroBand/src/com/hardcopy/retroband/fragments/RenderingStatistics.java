@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hardcopy.retroband;
+package com.hardcopy.retroband.fragments;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -119,6 +119,7 @@ public class RenderingStatistics extends View {
 		if(mIsInitialized)
 			return;
 		
+		// Get screen features
 		mViewW = this.getWidth();
 		mViewH = this.getHeight();
 		
@@ -139,6 +140,7 @@ public class RenderingStatistics extends View {
 		
 		mMaxValue = max_val;
 		
+		// Make canvas
 		mCanvas = new Canvas(mBitmap);
 		mIsInitialized = true;
 	}
@@ -165,7 +167,9 @@ public class RenderingStatistics extends View {
 				mScale = (float)(mViewH - MARGIN_TOP - MARGIN_BOTTOM) / maxH;	// Calculate height scale value
 			}
 			scaleH = mScale;
-		} else {
+		} 
+		// Initialize with default settings
+		else {
 			for(int i=0; i<dataArray.length; i++) {
 				if(dataArray[i] > maxH)
 					maxH = dataArray[i];

@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import com.hardcopy.retroband.contents.ContentObject;
 import android.os.Handler;
 
+/**
+ * Parse stream and extract accel data
+ * @author Administrator
+ */
 public class TransactionReceiver {
 	private static final String TAG = "TransactionReceiver";
 	
@@ -77,13 +81,15 @@ public class TransactionReceiver {
 		return object;
 	}
 
+	// Temporary variables for parsing
 	private byte mCacheStart = 0x00;
 	private byte mCacheEnd = 0x00;
 	private int mCacheData = 0x00;
 	private boolean mCached = false;
 	
 	/**
-	 * Parse byte array and makes content object
+	 * Caching received stream.
+	 * And parse byte array to make content object
 	 * @param buffer		byte array to parse
 	 * @param count			byte array size
 	 */
@@ -113,7 +119,7 @@ public class TransactionReceiver {
 						mCacheStart = buffer[i];
 					}
 					break;
-				/* Disabled
+				/* Disabled: 
 				case PARSE_MODE_WAIT_COMMAND:
 					Logs.d("Read data: PARSE_MODE_WAIT_COMMAND = " + String.format("%02X ", buffer[i]));
 					switch(buffer[i]) {
@@ -156,7 +162,7 @@ public class TransactionReceiver {
 					}
 					
 					// Remote device(Arduino) uses 2-byte integer.
-					// We must cache 2byte as single value
+					// We must cache 2byte to make single value
 					if(mCached) {
 						int tempData = 0x00000000;
 						int tempData2 = 0x00000000;
@@ -211,7 +217,9 @@ public class TransactionReceiver {
 		}
 	}
 	
-	
+	/**
+	 * Defines transaction constants
+	 */
 	public class Transaction {
 		private static final byte TRANSACTION_START_BYTE = (byte)0xfe;
 		private static final byte TRANSACTION_START_BYTE_2 = (byte)0xfd;

@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-package com.hardcopy.retroband;
+package com.hardcopy.retroband.fragments;
 
+import com.hardcopy.retroband.R;
+import com.hardcopy.retroband.R.id;
+import com.hardcopy.retroband.R.layout;
 import com.hardcopy.retroband.logic.Analyzer;
 import com.hardcopy.retroband.utils.AppSettings;
 
@@ -53,6 +56,7 @@ public class LLSettingsFragment extends Fragment {
 		
 		View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 		
+		// 'Run in background' setting
 		mCheckBackground = (CheckBox) rootView.findViewById(R.id.check_background_service);
 		mCheckBackground.setChecked(AppSettings.getBgService());
 		mCheckBackground.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -63,7 +67,7 @@ public class LLSettingsFragment extends Fragment {
 			}
 		});
 		
-		
+		// User's weight input form
 		mEditWeight = (EditText) rootView.findViewById(R.id.edit_weight);
 		mEditWeight.setText(Integer.toString(AppSettings.getWeight()));
 		mEditWeight.addTextChangedListener(new TextWatcher() {

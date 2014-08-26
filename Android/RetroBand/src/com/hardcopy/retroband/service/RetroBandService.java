@@ -67,9 +67,7 @@ public class RetroBandService extends Service implements IContentManagerListener
     
 	
 	/*****************************************************
-	 * 
 	 *	Overrided methods
-	 *
 	 ******************************************************/
 	@Override
 	public void onCreate() {
@@ -132,9 +130,7 @@ public class RetroBandService extends Service implements IContentManagerListener
 
 	
 	/*****************************************************
-	 * 
 	 *	Private methods
-	 *
 	 ******************************************************/
 	private void initialize() {
 		Log.d(TAG, "# Service : initialize ---");
@@ -165,6 +161,10 @@ public class RetroBandService extends Service implements IContentManagerListener
 		}
 	}
 	
+	/**
+	 * Send message to device. (but this method is not used)
+	 * @param message		message to send
+	 */
 	private void sendMessageToDevice(String message) {
 		if(message == null || message.length() < 1)
 			return;
@@ -178,9 +178,7 @@ public class RetroBandService extends Service implements IContentManagerListener
 	
 	
 	/*****************************************************
-	 * 
 	 *	Public methods
-	 *
 	 ******************************************************/
 	public void finalizeService() {
 		Log.d(TAG, "# Service : finalize ---");
@@ -206,6 +204,10 @@ public class RetroBandService extends Service implements IContentManagerListener
 		
 	}
 	
+	/**
+	 * Setting up bluetooth connection
+	 * @param h
+	 */
 	public void setupService(Handler h) {
 		mActivityHandler = h;
 		
@@ -227,7 +229,7 @@ public class RetroBandService extends Service implements IContentManagerListener
 		// or wait in listening mode
 		else {
 			if (mBtManager.getState() == BluetoothManager.STATE_NONE) {
-				// Start the bluetooth services
+				// Start the bluetooth service
 				mBtManager.start();
 			}
 		}
@@ -311,6 +313,10 @@ public class RetroBandService extends Service implements IContentManagerListener
 		sendMessageToDevice(message);
 	}
 	
+	/**
+	 * Start service monitoring. Service monitoring prevents
+	 * unintended close of service.
+	 */
 	public void startServiceMonitoring() {
 		if(AppSettings.getBgService()) {
 			ServiceMonitoring.startMonitoring(mContext);
@@ -322,9 +328,7 @@ public class RetroBandService extends Service implements IContentManagerListener
 	
 	
 	/*****************************************************
-	 * 
 	 *	Handler, Listener, Timer, Sub classes
-	 *
 	 ******************************************************/
 	public class LLServiceBinder extends Binder {
 		public RetroBandService getService() {
@@ -341,6 +345,7 @@ public class RetroBandService extends Service implements IContentManagerListener
 		public void handleMessage(Message msg) {
 			
 			switch(msg.what) {
+			// Bluetooth state changed
 			case BluetoothManager.MESSAGE_STATE_CHANGE:
 				// Bluetooth state Changed
 				Log.d(TAG, "Service - MESSAGE_STATE_CHANGE: " + msg.arg1);
@@ -368,10 +373,12 @@ public class RetroBandService extends Service implements IContentManagerListener
 				}
 				break;
 
+			// If you want to send data to remote
 			case BluetoothManager.MESSAGE_WRITE:
 				Log.d(TAG, "Service - MESSAGE_WRITE: ");
 				break;
 
+			// Received packets from remote
 			case BluetoothManager.MESSAGE_READ:
 				//Log.d(TAG, "Service - MESSAGE_READ: ");
 				

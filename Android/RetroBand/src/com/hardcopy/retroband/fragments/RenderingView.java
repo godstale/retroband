@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hardcopy.retroband;
+package com.hardcopy.retroband.fragments;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -94,7 +94,7 @@ public class RenderingView extends View {
 	/*****************************************************
 	*		Private methods
 	******************************************************/
-	private int mCurrentDrawingX = 1 + POINT_WIDTH_HALF;
+	private int mCurrentDrawingX = 1 + POINT_WIDTH_HALF;	// current drawing position
 	
 	private static final int POINT_WIDTH = 5;		// must be odd number.
 	private static final int POINT_THICKNESS = 5;	// must be odd number.
@@ -121,27 +121,40 @@ public class RenderingView extends View {
 	 */
 	private int moveTimeLine() {
 		int howManyPointInScreen = mViewW / POINT_WIDTH;
-		int cutPoint = howManyPointInScreen / GRID_UNIT_SIZE / 3;		// Must be multiple of GRID_UNIT_SIZE. Cut 1/n
+		int cutPoint = howManyPointInScreen / GRID_UNIT_SIZE / 3;		// Must be multiple of GRID_UNIT_SIZE. Cut 1/n of original image
+		int cutPointX = mCurrentDrawingX - POINT_WIDTH - cutPoint*GRID_UNIT_SIZE*POINT_WIDTH;
+		int cutWidth = mBitmap.getWidth() - cutPointX;
 
+		if(cutPointX <= 0 || cutPointX >= cutWidth) {
+			// Draw guide line
+			mPaint.setColor(0xFFb1b1b1);
+			mCanvas.drawLine(0, mViewH/2, 
+					mViewW, mViewH/2, 
+					mPaint);
+			
+			mCurrentDrawingX = 0;
+			return 0;
+		}
+		
 		// Cut recent area from canvas
 		Bitmap bCut  = Bitmap.createBitmap(mBitmap, 
-											mCurrentDrawingX - POINT_WIDTH - cutPoint*5*POINT_WIDTH, 0, 
-											cutPoint*5*POINT_WIDTH, mViewH);
+				cutPointX, 0, 
+				cutWidth, mViewH);
 		
 		mCanvas.drawColor(Color.WHITE);
 		mCanvas.drawBitmap(bCut, 0, 0, null);	// Paste image cut to left 
 		
 		// Draw guide line
 		mPaint.setColor(0xFFb1b1b1);
-		mCanvas.drawLine(cutPoint*5*POINT_WIDTH, mViewH/2, 
+		mCanvas.drawLine(cutPoint*GRID_UNIT_SIZE*POINT_WIDTH, mViewH/2, 
 				mViewW, mViewH/2, 
 				mPaint);
 		
 		//kbjung
-		mCurrentDrawingX = 1 + cutPoint*5*POINT_WIDTH;
+		mCurrentDrawingX = 1 + cutPoint*GRID_UNIT_SIZE*POINT_WIDTH;
 		bCut = null;
 		
-		return cutPoint*5*POINT_WIDTH;
+		return cutPoint*GRID_UNIT_SIZE*POINT_WIDTH;
 	}
 	
 	@Deprecated

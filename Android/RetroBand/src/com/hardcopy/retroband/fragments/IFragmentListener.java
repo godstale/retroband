@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hardcopy.retroband;
+package com.hardcopy.retroband.fragments;
 
 public interface IFragmentListener {
 	public static final int CALLBACK_RUN_IN_BACKGROUND = 1;

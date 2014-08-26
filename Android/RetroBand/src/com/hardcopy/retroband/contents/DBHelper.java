@@ -172,115 +172,9 @@ public class DBHelper {
 		}
 	}
 
-/*
-	public long insertActivityReport(ActivityReport ar) throws SQLiteConstraintException {
-		if(ar.mSumOfDifference < 1 || ar.mCount < 1 || ar.mSamplingInterval < 1 || ar.mTotalTime < 1)
-			return -1;
-		
-		ContentValues insertValues = new ContentValues();
-		insertValues.put(KEY_ACCEL_TYPE, ar.mType);
-		insertValues.put(KEY_ACCEL_TIME, ar.mStartTime);
-		
-		insertValues.put(KEY_ACCEL_DATA1, ar.mSumOfDifference);
-		insertValues.put(KEY_ACCEL_DATA2, ar.mCount);
-		insertValues.put(KEY_ACCEL_DATA3, ar.mAverageDifference);
-		insertValues.put(KEY_ACCEL_DATA4, ar.mSamplingInterval);
-		insertValues.put(KEY_ACCEL_DATA5, ar.mTotalTime);
-		insertValues.put(KEY_ACCEL_ARG0, ar.mShakeActionCount);
-		insertValues.put(KEY_ACCEL_ARG1, ar.mCalorie);
-		
-		Logs.d(TAG, "+ Insert activity report : mStartTime="+ar.mStartTime+", mSumOfDifference="+ar.mSumOfDifference+", mCount="+ar.mCount
-				+", mAverageDifference="+ar.mAverageDifference+", mSamplingInterval"+ar.mSamplingInterval+", mTotalTime="+ar.mTotalTime
-				+", mShakeActionCount="+ar.mShakeActionCount +", mCalorie="+ar.mCalorie);
-		
-		synchronized (mDb) {
-			if(mDb == null) 
-				return -1;
-			return mDb.insertOrThrow(TABLE_NAME_ACCEL_REPORT, null, insertValues);
-		}
-	}
-	
-	public boolean insertBulkItems(ArrayList<FeedObject> feedList) {
-		long start = System.currentTimeMillis();
-		int time = (int)(start / 1000);
-		if(feedList==null || feedList.size()<1) 
-			return false;
-		
-		Logs.d(TAG, "# Insert bulk : type="+feedList.get(0).mType+", item count = "+feedList.size());
-
-		InsertHelper iHelp = new InsertHelper(mDb, TABLE_NAME_FEED_ITEM);
-		int ktype 		= iHelp.getColumnIndex(KEY_FEED_TYPE);
-		int kstatus 	= iHelp.getColumnIndex(KEY_FEED_STATUS);
-		int kid 			= iHelp.getColumnIndex(KEY_FEED_IDSTRING);
-		int kname 			= iHelp.getColumnIndex(KEY_FEED_NAME);
-		int klink 		= iHelp.getColumnIndex(KEY_FEED_LINK);
-		int kkeyword 	= iHelp.getColumnIndex(KEY_FEED_KEYWORD);
-		int kcontent 	= iHelp.getColumnIndex(KEY_FEED_CONTENT);
-		int kthumbnail 	= iHelp.getColumnIndex(KEY_FEED_THUMBNAILURL);
-		int kdate 			= iHelp.getColumnIndex(KEY_FEED_DATE);
-		int krank 			= iHelp.getColumnIndex(KEY_FEED_RANK);
-		int kclick 			= iHelp.getColumnIndex(KEY_FEED_CLICK);
-		int kranktype	= iHelp.getColumnIndex(KEY_FEED_ARG0);
-		int kversion	= iHelp.getColumnIndex(KEY_FEED_ARG1);
-		int kfullimage	= iHelp.getColumnIndex(KEY_FEED_ARG2);
-		
-		synchronized (mDb) {
-			if(mDb == null) return false;
-			try
-			{
-				mDb.beginTransaction();
-				// First one is recent one. So insert oldest first.
-				for(int i = feedList.size()-1 ; -1<i ; i--)
-				{
-					FeedObject feed = feedList.get(i);
-					// need to tell the helper you are inserting (rather than replacing)
-					iHelp.prepareForInsert();
-
-					// do the equivalent of ContentValues.put("field","value") here
-					iHelp.bind(ktype, feed.mType);
-					iHelp.bind(kstatus, feed.mDownloadStatus);
-					iHelp.bind(kid, feed.mId);
-					if(feed.mName != null)
-						iHelp.bind(kname, feed.mName);
-					if(feed.mLink != null)
-						iHelp.bind(klink, feed.mLink);
-					if(feed.mKeyword != null)
-						iHelp.bind(kkeyword, feed.mKeyword);
-					if(feed.mContent != null)
-						iHelp.bind(kcontent, feed.mContent);
-					if(feed.mThumbnailUrl != null)
-						iHelp.bind(kthumbnail, feed.mThumbnailUrl);
-					if(feed.mDate != null)
-						iHelp.bind(kdate, feed.mDate);
-					else
-						iHelp.bind(kdate, time);
-
-					iHelp.bind(krank, feed.mRankUpAndDown);
-					iHelp.bind(kclick, feed.mCommentCount);
-					iHelp.bind(kranktype, feed.mRankType);
-					iHelp.bind(kversion, feed.mVersion);
-
-					if(feed.mFullSizeImageURL != null)
-						iHelp.bind(kfullimage, feed.mFullSizeImageURL);
-					
-					//the db.insert() equilvalent
-					iHelp.execute();
-				}
-				mDb.setTransactionSuccessful();
-			}
-			catch(Exception e) {
-			}
-			finally	{
-				mDb.endTransaction();
-			}
-		}
-
-		return true;
-	}
-*/
 	
 	//----------------------------------------------------------------------------------
-	// SELECT
+	// SELECT methods
 	//----------------------------------------------------------------------------------
 	public Cursor selectReportAll() {
 		synchronized (mDb) {
@@ -362,7 +256,7 @@ public class DBHelper {
 	}
 	
 	//----------------------------------------------------------------------------------
-	// Update
+	// Update methods
 	//----------------------------------------------------------------------------------
 /*
 	public int updateFilter(FilterObject filter) 
@@ -395,7 +289,7 @@ public class DBHelper {
 */
 	
 	//----------------------------------------------------------------------------------
-	// Delete
+	// Delete methods
 	//----------------------------------------------------------------------------------
 
 	public void deleteReportWithID(int id) {
@@ -448,7 +342,7 @@ public class DBHelper {
 	}
 	
 	//----------------------------------------------------------------------------------
-	// Count
+	// Count methods
 	//----------------------------------------------------------------------------------
 	public int getReportCount() {
 		String query = "select count(*) from " + TABLE_NAME_ACCEL_REPORT;

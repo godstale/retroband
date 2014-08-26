@@ -21,6 +21,10 @@ import java.util.TimerTask;
 
 import com.hardcopy.retroband.contents.ActivityReport;
 import com.hardcopy.retroband.contents.ContentObject;
+import com.hardcopy.retroband.fragments.GraphFragment;
+import com.hardcopy.retroband.fragments.IFragmentListener;
+import com.hardcopy.retroband.fragments.LLFragmentAdapter;
+import com.hardcopy.retroband.fragments.TimelineFragment;
 import com.hardcopy.retroband.service.RetroBandService;
 import com.hardcopy.retroband.utils.AppSettings;
 import com.hardcopy.retroband.utils.Constants;
@@ -78,9 +82,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	
 
 	/*****************************************************
-	 * 
 	 *	 Overrided methods
-	 *
 	 ******************************************************/
 
 	@Override
@@ -231,10 +233,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		}
 	}
 	
+	
 	/*****************************************************
-	 * 
 	 *	Private methods
-	 *
 	 ******************************************************/
 	
 	/**
@@ -257,12 +258,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		}
 	};
 	
+	/**
+	 * Start service if it's not running
+	 */
 	private void doStartService() {
 		Log.d(TAG, "# Activity - doStartService()");
 		startService(new Intent(this, RetroBandService.class));
 		bindService(new Intent(this, RetroBandService.class), mServiceConn, Context.BIND_AUTO_CREATE);
 	}
 	
+	/**
+	 * Stop the service
+	 */
 	private void doStopService() {
 		Log.d(TAG, "# Activity - doStopService()");
 		mService.finalizeService();
@@ -287,8 +294,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		if(mRefreshTimer != null) {
 			mRefreshTimer.cancel();
 		}
-		mRefreshTimer = new Timer();
-		mRefreshTimer.schedule(new RefreshTimerTask(), 5*1000);
+		
+		// Use below timer if you want scheduled job
+		//mRefreshTimer = new Timer();
+		//mRefreshTimer.schedule(new RefreshTimerTask(), 5*1000);
 	}
 	
 	private void finalizeActivity() {
@@ -299,6 +308,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		} else {
 		}
 
+		// Clean used resources
 		RecycleUtils.recursiveRecycle(getWindow().getDecorView());
 		System.gc();
 	}
@@ -324,9 +334,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	
 	
 	/*****************************************************
-	 * 
 	 *	Public classes
-	 *
 	 ******************************************************/
 	
 	/**
@@ -364,9 +372,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	
 	
 	/*****************************************************
-	 * 
 	 *	Handler, Callback, Sub-classes
-	 *
 	 ******************************************************/
 	
 	public class ActivityHandler extends Handler {
@@ -374,7 +380,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		public void handleMessage(Message msg) 
 		{
 			switch(msg.what) {
-			// BT state message
+			// BT state messages
 			case Constants.MESSAGE_BT_STATE_INITIALIZED:
 				mTextStatus.setText(getResources().getString(R.string.bt_title) + ": " + 
 						getResources().getString(R.string.bt_state_init));

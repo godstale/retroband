@@ -45,7 +45,7 @@
             android:textSize="12sp"
             android:textColor="#777777"
              />
-        <view class="com.hardcopy.retroband.RenderingView"
+        <view class="com.hardcopy.retroband.fragments.RenderingView"
             android:id="@+id/render_accel"
             android:layout_width="match_parent"
             android:layout_height="300dip"

@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-package com.hardcopy.retroband;
+package com.hardcopy.retroband.fragments;
 
 import java.util.Locale;
+
+import com.hardcopy.retroband.R;
+import com.hardcopy.retroband.R.string;
 
 import android.content.Context;
 import android.os.Bundle;

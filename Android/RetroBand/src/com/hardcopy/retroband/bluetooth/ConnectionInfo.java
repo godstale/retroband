@@ -44,6 +44,9 @@ public class ConnectionInfo {
 		mDeviceName = prefs.getString(Constants.PREFERENCE_CONN_INFO_NAME, null);
 	}
 	
+	/**
+	 * Single pattern
+	 */
 	public synchronized static ConnectionInfo getInstance(Context c) {
 		if(mInstance == null) {
 			if(c != null)
@@ -54,6 +57,9 @@ public class ConnectionInfo {
 		return mInstance;
 	}
 	
+	/**
+	 * Reset connection info
+	 */
 	public void resetConnectionInfo() {
 		mDeviceAddress = null;
 		mDeviceName = null;
@@ -83,10 +89,18 @@ public class ConnectionInfo {
 		editor.commit();
 	}
 	
+	/**
+	 * Get device address string
+	 * @return	String		device address
+	 */
 	public String getDeviceAddress() {
 		return mDeviceAddress;
 	}
 	
+	/**
+	 * Set device address
+	 * @param address	device address
+	 */
 	public void setDeviceAddress(String address) {
 		mDeviceAddress = address;
 	}

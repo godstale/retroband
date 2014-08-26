@@ -14,12 +14,16 @@
  * limitations under the License.
  */
 
-package com.hardcopy.retroband;
+package com.hardcopy.retroband.fragments;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.hardcopy.retroband.R;
+import com.hardcopy.retroband.R.id;
+import com.hardcopy.retroband.R.layout;
+import com.hardcopy.retroband.R.string;
 import com.hardcopy.retroband.contents.ActivityReport;
 import com.hardcopy.retroband.contents.ContentManager;
 import com.hardcopy.retroband.logic.Analyzer;

@@ -298,6 +298,7 @@ public class Analyzer {
 		return ar;
 	}
 	
+	@Deprecated
 	public static double calculateCalorie(int shakeActionCount) {
 		return shakeActionCount*50;
 	}

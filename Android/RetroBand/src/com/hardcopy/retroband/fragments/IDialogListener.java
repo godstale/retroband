@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-package com.hardcopy.retroband;
+package com.hardcopy.retroband.fragments;
 
-public interface IAdapterListener {
-	public static final int CALLBACK_xxx = 1;
+public interface IDialogListener {
+	public static final int CALLBACK_ENABLE_MESSAGE = 1;
+	public static final int CALLBACK_ENABLE_PACKAGE = 2;
 	
-	public void OnAdapterCallback(int msgType, int arg0, int arg1, String arg2, String arg3, Object arg4);
+	public static final int CALLBACK_CLOSE = 1000;
+	
+	public void OnDialogCallback(int msgType, int arg0, int arg1, String arg2, String arg3, Object arg4);
 }

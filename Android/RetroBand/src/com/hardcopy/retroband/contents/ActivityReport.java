@@ -13,7 +13,7 @@ public class ActivityReport {
 	public int mTotalTime = 0;
 	
 	// Result
-	public int mShakeActionCount = 0;
-	public double mCalorie = 0;			// Calorie consume for 1 sec.
+	public int mShakeActionCount = 0;	// Walk count
+	public double mCalorie = 0;			// Calorie consumes for 1 sec.
 	public double mSumOfCalorie = 0;	// Total calorie consumed for this session
 }

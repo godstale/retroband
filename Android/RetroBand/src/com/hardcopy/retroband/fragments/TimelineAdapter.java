@@ -14,12 +14,16 @@
  * limitations under the License.
  */
 
-package com.hardcopy.retroband;
+package com.hardcopy.retroband.fragments;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.hardcopy.retroband.R;
+import com.hardcopy.retroband.R.color;
+import com.hardcopy.retroband.R.id;
+import com.hardcopy.retroband.R.layout;
 import com.hardcopy.retroband.contents.ActivityReport;
 
 import android.content.Context;
@@ -184,6 +188,10 @@ public class TimelineAdapter extends ArrayAdapter<ActivityReport> implements IDi
 		}
 	};	// End of new OnTouchListener
 	
+	/**
+	 * Custom click event process
+	 * @param v		target view
+	 */
 	private void processOnClickEvent(View v) {
 		switch(v.getId())
 		{
@@ -197,6 +205,7 @@ public class TimelineAdapter extends ArrayAdapter<ActivityReport> implements IDi
 		}	// End of switch()
 	}
 	
+	// Holds layout information
 	public class ViewHolder {
 		public LinearLayout mItemContainer = null;
 		public TextView mTextInfo1 = null;

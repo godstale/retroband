@@ -22,7 +22,16 @@ import com.hardcopy.retroband.utils.Constants;
 import android.os.Handler;
 import android.util.Log;
 
+/**
+ * This class is for future use.
+ * If you want to send something to remote
+ * Add methods in Transaction class
+ * 
+ * @author Administrator
+ *
+ */
 public class TransactionBuilder {
+	
 	private static final String TAG = "TransactionBuilder";
 	
 	private BluetoothManager mBTManager = null;
@@ -89,7 +98,8 @@ public class TransactionBuilder {
 				return false;
 			}
 			
-			// TODO: For debug. Comment out below lines if you dont want
+			// TODO: For debug. Comment out below lines if you don't want
+			/*
 			if(mBuffer.length > 0) {
 				StringBuilder sb = new StringBuilder();
 				sb.append("Message : ");
@@ -101,6 +111,7 @@ public class TransactionBuilder {
 				Log.d(TAG, " ");
 				Log.d(TAG, sb.toString());
 			}
+			*/
 			
 			if(mState == STATE_SETTING_FINISHED) {
 				if(mBTManager != null) {
@@ -116,11 +127,13 @@ public class TransactionBuilder {
 						}
 						mState = STATE_ERROR;
 					}
+					// Report result
 					mHandler.obtainMessage(Constants.MESSAGE_CMD_ERROR_NOT_CONNECTED).sendToTarget();
 				}
 			}
 			return false;
 		}
+		
 		
 		public byte[] getPacket() {
 			if(mState == STATE_SETTING_FINISHED) {

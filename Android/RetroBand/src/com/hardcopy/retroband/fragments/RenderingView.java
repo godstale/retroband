@@ -125,7 +125,9 @@ public class RenderingView extends View {
 		int cutPointX = mCurrentDrawingX - POINT_WIDTH - cutPoint*GRID_UNIT_SIZE*POINT_WIDTH;
 		int cutWidth = mBitmap.getWidth() - cutPointX;
 
-		if(cutPointX <= 0 || cutPointX >= cutWidth) {
+		if(cutPointX <= 0 || cutPointX + cutWidth >= mBitmap.getWidth()) {
+			mCanvas.drawColor(Color.WHITE);
+			
 			// Draw guide line
 			mPaint.setColor(0xFFb1b1b1);
 			mCanvas.drawLine(0, mViewH/2, 
